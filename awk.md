@@ -46,6 +46,14 @@ awk 'BEGIN {FS=","}; /Achira/ {print $4};' file2
 ```
 > `FS` is the builtin separator variable. Set this variable to match the ones used in your file.
 
+- Separator string. Use this when you want to separate a line using a string rather than a single character.
+```
+awk '{split($0, a, "A_LONG_SEPARATOR_STRING: "); print a[2];}' 
+```
+> This will print the content after `A_LONG_SEPARATOR_STRING: ` in the line.
+> It is very handy for those who cannot count :P Using a fingerprint string
+> as a separator so that it's very easy to locate the content your want.
+
 - Reorder file1 to have the format "Flavoryness,Name,Color"
 ```
 awk '{printf "%s,%s,%s\n", $3, $1, $2}' file1
